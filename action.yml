@@ -4,8 +4,8 @@ description: 'Updates README with a quote of the day'
 inputs:
   category:  # id of input
     description: 'Quote category to fetch'
-    required: false
-    default: 'inspire' 
+    required: true
+    default: 'management' 
     #possible values: inspire, management, sports, life, funny, love, art, students
   readme_path:
     description: 'Path of the readme file to update'
