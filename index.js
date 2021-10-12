@@ -14,7 +14,7 @@ const readme_path = core.getInput("readme_path") || "README.md";
 
     let qotd = data.contents.quotes[0].quote;
     let quote = `<!-- start quote -->\n`;
-    quote = quote.concat(`💬 Quote of the Day: "${qotd}"\n<!-- end quote -->`);
+    quote = quote.concat(`💬 Quote of the Day${Date.now()}: "${qotd}"\n<!-- end quote -->`);
 
     // Rewrite README with new qotd
     const currentText = await fs.readFile(readme_path, "utf8");
