@@ -1,5 +1,5 @@
 const core = require("@actions/core");
-const fs = require("fs");
+const fs = require("fs/promises");
 const axios = require("axios");
 
 const category = core.getInput("category") || "inspire";
@@ -20,10 +20,10 @@ const readme_path = core.getInput("readme_path") || "README.md";
     const currentText = await fs.readFile(readme_path, "utf8");
     const quoteSection = /<!-- start quote -->[\s\S]*<!-- end quote -->/g;
     const newText = currentText.replace(quoteSection, quote);
-    console.log("New test to be written %s", newText);
+    console.log("New quote to be written \n%s", quote);
 
     await fs.writeFile(readme_path, newText);
   } catch (error) {
-    console.log(error.message);
+    console.log("Error: %s", error.message);
   }
 })();
