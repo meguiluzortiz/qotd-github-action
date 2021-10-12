@@ -20,6 +20,7 @@ const readme_path = core.getInput("readme_path") || "README.md";
     const currentText = await fs.readFile(readme_path, "utf8");
     const quoteSection = /<!-- start quote -->[\s\S]*<!-- end quote -->/g;
     const newText = currentText.replace(quoteSection, quote);
+    console.log("New test to be written %s", newText);
 
     await fs.writeFile(readme_path, newText);
   } catch (error) {
