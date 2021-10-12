@@ -1,8 +1,8 @@
 const core = require("@actions/core");
-const fs = require("fs/promises");
+const fs = require("fs").promises;
 const axios = require("axios");
 
-const category = core.getInput("category") || "inspire";
+const category = core.getInput("category") || "life";
 const readme_path = core.getInput("readme_path") || "README.md";
 
 (async () => {
