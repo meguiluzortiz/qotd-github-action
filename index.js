@@ -1,8 +1,9 @@
 const core = require("@actions/core");
 const fs = require("fs").promises;
 const axios = require("axios");
+const date = require("./date");
 
-const category = core.getInput("category") || "life";
+const category = core.getInput("category") || "inspire";
 const readme_path = core.getInput("readme_path") || "README.md";
 
 (async () => {
@@ -11,10 +12,13 @@ const readme_path = core.getInput("readme_path") || "README.md";
     const { data } = await axios.get(
       `https://quotes.rest/qod?category=${category}`
     );
+    const qotd = data.contents.quotes[0].quote;
+    const datetime = date.format24Hour();
 
-    let qotd = data.contents.quotes[0].quote;
     let quote = `<!-- start quote -->\n`;
-    quote = quote.concat(`💬 Quote of the Day${Date.now()}: "${qotd}"\n<!-- end quote -->`);
+    quote = quote.concat(
+      `💬 Quote of the Day ${datetime}: "${qotd}"\n<!-- end quote -->`
+    );
 
     // Rewrite README with new qotd
     const currentText = await fs.readFile(readme_path, "utf8");
